@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- criacao de um botao para criar o cookie -->
+    <button id = 'btnCreateCookie'>Create Cookie</button>
+
+    <!-- cria uma ancora que leva ao caminho /steal, usado para ler os cookies da pagina inicial-->
+    <a id = 'aSteal'>Steal</a>
+
+    <!-- cria uma ancora que leva ao site example.com-->
+    <a href = 'http://example.com'>go to example.com</a>
+
+    <!-- cria uma ancora que leva ao site www.example.com-->
+    <a href = 'http://www.example.com'>go to www.example.com</a>
+
+    <!-- faz uma requisicao ao site do localhost, recebe a mensagem e cria um cookie -->
+    <img src = 'http://GSTSPO01NB84.local:8080/img'>
+
+    <script>
+        //cria um objeto chamando o botao quando for clicado
+        const btnCreateCookie = document.getElementById("btnCreateCookie")
+
+        //cria o cookie após o clique no botao
+        btnCreateCookie.addEventListener("click", e=> document.cookie = "ricardo=3")
+
+        //cria um objeto chamando a ancora quando for clicada
+        const steal = document.getElementById("aSteal")
+
+        //atribui uma url para o objeto steal, passando o parametro 'v=document.cookie' na url
+        steal.href = `http://GSTSPO01NB84.local:8080/steal?v=${document.cookie}`
+    </script>
+</body>
+</html>

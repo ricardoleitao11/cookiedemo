@@ -1,0 +1,103 @@
+Cookies - 
+
+São pequenos pedacos de dados, usados como mídia de armazenamento pelo browser e são enviados ao servidor por requisição, para serem usados posteriormente pela msm pagina que enviou.
+
+Criando cookies:
+Existem 2 maneiras de criar cookies -> 
+	Javascript - Document.cookie
+	Web Server - Set-cookie header
+	
+Metodo Javascript ->
+	- abrir o browser (firefox)
+	- entrar no site exemplo (example.com)
+	- abrir o console web para digitar comandos
+	- digitar o comando "document.cookie" seguido de um "=name=value". Ex: document.cookie="ricardo=1"
+	- acessar a aba application ou a aba armazenamento, para ver o cookie criado, juntamente com suas outras propriedades
+	
+Metodo Javascript 2 ->
+	- abrir o código cookiedemo
+	
+Metodo Web Server ->
+	- abrir o codigo cookiedemo, no arquivo index.js
+	- antes do comando sendFile, podemos colocar um comando que envia o cookie só de acessar o site
+	- adicionar o comando setHeader com um 'set-cookie', passando o parâmetro "name=value" daquele cookie, dentro de um array
+	- ao acessar a página, automaticamente terá um cookie criado 
+	
+
+Propriedades dos cookies:
+Cookies são enviados a cada requisição
+
+Escopo do cookie ->
+	Dominio
+		- cada cookie pertence a aquele e só aquele dominio (isso vale tambem para subdominios)
+		- e cada dominio pode acessar somente os cookies do seu próprio dominio
+		- Ex: criar um cookie qualquer, na pagina "example.com" e busca-lo na pagina "www.example.com", para ver q o cookie nao esta la (visto que sao dominios diferentes). Se testarmos o contrario, na pagina "example.com" não terá o cookie criado na pagina "www.example.com"
+		- um modo de contornar isso é usar o parametro "domain" na hora que for criar o cookie. Assim podemos especificar os dominios que receberão aquele cookie. Ex: "document.cookie="name=value; domain=.dominiosquequiser""
+		
+	Caminho
+		- podemos setar "caminhos" para os cookies
+		- podemos enviar cookies para um caminho definido ou para outro
+		- para definir um caminho, usamos o codigo: "document.cookie="name=value; path=/caminhodesejado""
+		
+Idade e expiracao do cookie ->
+	- se nao especificar as propriedades "max-age" ou "expires", o cookie será destruido quando o browser for fechado (cookie de sessão)
+	- se essas propriedades forem especificadas, o cookie será "permantente"
+		- mesmo se o browser for fechado, o cookie ainda estara ativo
+	- para criar uma idade maxima para o cookie, usar o codigo: "document.cookie="name=value; max-age=numerodesegundosdesejados""
+	- mesma coisa se aplica ao comando "expires": "document.cookie="name=value; expires=datadesejadanoformatoUTC"".
+		- exemplo de codigo para o cookie expirar em 24h
+		- const date = new Date()
+		  date.setHours(date.getHours() + 24)
+		  document.cookie = 'name=Flavio; expires=' + date.toUTCString()
+
+Same site ->
+	- o cookie só é enviado quando for acessado diretamente pelo site, e nao por outros links que redirecionam para o site
+	- para criar um cookie restrito ao acesso direto do site, usar o codigo: "document.cookie="name=value; samesite=strict""
+	- para criar um cookie nao restrito ao acesso direto, podendo ser acessado por links de redirecionamente, usar o codigo: "document.cookie="name=value; samesite=lax""
+	
+	
+Tipos de cookies:
+Cookies de sessão ->
+	- cookie que não tem uma idade maxima ou uma data de expiracao
+
+Cookie permanente ->
+	- cookie que tem data maxima de idade ou uma data de expiracao
+	- continua ativo msm depois de fechar o servidor/browser
+	
+Cookie httponly ->
+	- cookies que só podem ser setados do servidor
+	- browser nao pode ler esse cookie
+	- muito seguro para nao ter ataques XSS
+	- só podem ser enviados ao servidor
+	- quando buscado pelo console web atraves do comando "document.cookie", não aparece, pois tem a propriedade HTTPOnly setada na aba "Application"
+	- abrir o codigo "cookiedemo" no arquivo "index.js" para ver como é criado
+	
+Cookie seguro ->	
+	- propriedade que pode ser colocada no cookie
+	- só é disponivel para sites que possuam o protocolo https
+
+Cookie terceirizado (third party cookie) ->
+	- cookies usados para rastreamento
+	- apenas um cookie normal, mas aninhado no site
+	- ex: ads em um site, que possui cookies de dominio próprio, podem enviar (via google analytics) cookies para o site
+	- ver codigo cookiedemo
+
+Cookie zumbi ->
+	- cookies que mesmo apos serem deletados, serao recriados com os mesmos valores
+
+
+Seguranca de cookies:
+Roubar cookies ->
+	- ter uma aplicacao/script em JS que le o "document.cookie" e envia para algum outro lugar
+	- o codigo cookiedemo para exemplo
+
+Forjar requisicao por XSS ->
+	- metodo para extrair ou usar o cookie de um site no seu proprio site, ou utilizar o cookie de uma maneira alternativa
+	
+	
+	
+Aula - https://www.youtube.com/watch?v=sovAIX4doOE	
+	
+	
+	
+	
